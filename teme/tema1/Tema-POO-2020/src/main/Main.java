@@ -1,19 +1,20 @@
 package main;
 
-import checker.Checkstyle;
-import checker.Checker;
-import common.Constants;
-import fileio.Input;
-import fileio.InputLoader;
-import fileio.Writer;
-import org.json.simple.JSONArray;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+
+import app.AppHandler;
+import checker.Checker;
+import checker.Checkstyle;
+import common.Constants;
+import fileio.Input;
+import fileio.InputLoader;
+import fileio.JsonHolyWriter;
+import fileio.Writer;
 
 /**
  * The entry point to this homework. It runs the checker that tests your implentation.
@@ -68,10 +69,14 @@ public final class Main {
         Input input = inputLoader.readData();
 
         Writer fileWriter = new Writer(filePath2);
-        JSONArray arrayResult = new JSONArray();
+        JsonHolyWriter holyWriter = new JsonHolyWriter(fileWriter);
 
-        //TODO add here the entry point to your implementation
+        System.out.println("Input: " + filePath1);
+        System.out.println("Output: " + filePath2);
+        
+        AppHandler appHandler = new AppHandler(input, holyWriter);
+        appHandler.runActions();
 
-        fileWriter.closeJSON(arrayResult);
+        holyWriter.closeJSON();
     }
 }
