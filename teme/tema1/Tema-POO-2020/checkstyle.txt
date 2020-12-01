@@ -1,2 +1,13 @@
 Starting audit...
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:56:22: 'userArray' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:68:33: 'userMap' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:80:17: 'videoArray' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:99:34: 'videoMap' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:111:23: 'actorArray' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/app/AppHandler.java:123:34: 'actorMap' hides a field. [HiddenField]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/fileio/Writer.java:35: Line is longer than 100 characters (found 108). [LineLength]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/fileio/UserInputData.java:29: Line is longer than 100 characters (found 114). [LineLength]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/fileio/UserInputData.java:55: Line is longer than 100 characters (found 115). [LineLength]
+[ERROR] /home/marius/Desktop/work/an2/teme/poo/teme/teme/tema1/Tema-POO-2020/./src/entertainment/Genre.java:9: Line is longer than 100 characters (found 117). [LineLength]
 Audit done.
+Checkstyle ends with 10 errors.

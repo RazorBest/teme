@@ -3,8 +3,7 @@ package checker;
 import java.util.Objects;
 
 /**
- * DO NOT MODIFY
- * The class that contains the id and message of each QueryTest
+ * DO NOT MODIFY The class that contains the id and message of each QueryTest
  */
 public final class QueryTest {
     /**
@@ -37,24 +36,16 @@ public final class QueryTest {
         if (this == o) {
             return true;
         }
-        if (o == null
-                || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        QueryTest queryTest = (QueryTest) o;
-        return id == queryTest.id
-                && Objects.equals(message, queryTest.message);
+        final QueryTest queryTest = (QueryTest) o;
+        return id == queryTest.id && Objects.equals(message, queryTest.message);
     }
 
     @Override
     public String toString() {
-        return "QueryTest{"
-                + "id="
-                + id
-                + ", message='"
-                + message
-                + '\''
-                + '}';
+        return "QueryTest{" + "id=" + id + ", message='" + message + '\'' + '}';
     }
 
     @Override

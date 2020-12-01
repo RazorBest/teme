@@ -22,15 +22,15 @@ public final class Test {
      * @throws IOException in case of exceptions to reading / writing
      */
     public static void main(final String[] args) throws IOException {
-        File directory = new File(Constants.TESTS_PATH);
-        File[] inputDir = directory.listFiles();
+        final File directory = new File(Constants.TESTS_PATH);
+        final File[] inputDir = directory.listFiles();
 
         if (inputDir != null) {
             Arrays.sort(inputDir);
 
-            Scanner scanner = new Scanner(System.in);
-            String fileName = scanner.next();
-            for (File file : inputDir) {
+            final Scanner scanner = new Scanner(System.in);
+            final String fileName = scanner.next();
+            for (final File file : inputDir) {
                 if (file.getName().equalsIgnoreCase(fileName)) {
                     Main.action(file.getAbsolutePath(), Constants.OUT_FILE);
                     break;

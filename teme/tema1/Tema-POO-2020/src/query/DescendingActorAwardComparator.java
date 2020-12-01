@@ -1,0 +1,17 @@
+package query;
+
+import java.util.Comparator;
+
+import actor.Actor;
+
+public final class DescendingActorAwardComparator implements Comparator<Actor> {
+
+    @Override
+    public int compare(final Actor actor1, final Actor actor2) {
+        if (actor2.getAwardCount() != actor1.getAwardCount()) {
+            return actor2.getAwardCount() - actor1.getAwardCount();
+        }
+        return actor2.getName().compareTo(actor1.getName());
+    }
+
+}

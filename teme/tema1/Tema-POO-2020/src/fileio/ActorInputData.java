@@ -1,9 +1,9 @@
 package fileio;
 
-import actor.ActorsAwards;
-
 import java.util.ArrayList;
 import java.util.Map;
+
+import actor.ActorsAwards;
 
 /**
  * Information about an actor, retrieved from parsing the input test files
@@ -26,11 +26,10 @@ public final class ActorInputData {
     /**
      * awards won by the actor
      */
-    private Map<ActorsAwards, Integer> awards;
+    private final Map<ActorsAwards, Integer> awards;
 
     public ActorInputData(final String name, final String careerDescription,
-                          final ArrayList<String> filmography,
-                          final Map<ActorsAwards, Integer> awards) {
+            final ArrayList<String> filmography, final Map<ActorsAwards, Integer> awards) {
         this.name = name;
         this.careerDescription = careerDescription;
         this.filmography = filmography;
@@ -67,10 +66,7 @@ public final class ActorInputData {
 
     @Override
     public String toString() {
-        return "ActorInputData{"
-                + "name='" + name + '\''
-                + ", careerDescription='"
-                + careerDescription + '\''
-                + ", filmography=" + filmography + '}';
+        return "ActorInputData{" + "name='" + name + '\'' + ", careerDescription='"
+                + careerDescription + '\'' + ", filmography=" + filmography + '}';
     }
 }

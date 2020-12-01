@@ -31,9 +31,9 @@ public final class Writer {
      * @return An JSON Object
      * @throws IOException in case of exceptions to reading / writing
      */
-    public JSONObject writeFile(final int id, final String field,
-                                final String message) throws IOException {
-        JSONObject object = new JSONObject();
+    // This method is not useful
+    public JSONObject writeFile(final int id, final String field, final String message) throws IOException {
+        final JSONObject object = new JSONObject();
         object.put(Constants.ID_STRING, id);
         object.put(Constants.MESSAGE, message);
 
@@ -50,7 +50,7 @@ public final class Writer {
             file.write(array.toJSONString());
             file.flush();
             file.close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }

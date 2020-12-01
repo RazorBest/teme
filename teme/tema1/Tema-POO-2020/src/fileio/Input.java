@@ -38,9 +38,8 @@ public final class Input {
     }
 
     public Input(final List<ActorInputData> actors, final List<UserInputData> users,
-                 final List<ActionInputData> commands,
-                 final List<MovieInputData> movies,
-                 final List<SerialInputData> serials) {
+            final List<ActionInputData> commands, final List<MovieInputData> movies,
+            final List<SerialInputData> serials) {
         this.actorsData = actors;
         this.usersData = users;
         this.commandsData = commands;

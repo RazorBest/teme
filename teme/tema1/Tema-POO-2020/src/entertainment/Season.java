@@ -46,12 +46,6 @@ public final class Season {
 
     @Override
     public String toString() {
-        return "Episode{"
-                + "currentSeason="
-                + currentSeason
-                + ", duration="
-                + duration
-                + '}';
+        return "Episode{" + "currentSeason=" + currentSeason + ", duration=" + duration + '}';
     }
 }
-

@@ -17,7 +17,8 @@ import fileio.JsonHolyWriter;
 import fileio.Writer;
 
 /**
- * The entry point to this homework. It runs the checker that tests your implentation.
+ * The entry point to this homework. It runs the checker that tests your
+ * implentation.
  */
 public final class Main {
     /**
@@ -28,33 +29,34 @@ public final class Main {
 
     /**
      * Call the main checker and the coding style checker
+     *
      * @param args from command line
      * @throws IOException in case of exceptions to reading / writing
      */
     public static void main(final String[] args) throws IOException {
-        File directory = new File(Constants.TESTS_PATH);
-        Path path = Paths.get(Constants.RESULT_PATH);
+        final File directory = new File(Constants.TESTS_PATH);
+        final Path path = Paths.get(Constants.RESULT_PATH);
         if (!Files.exists(path)) {
             Files.createDirectories(path);
         }
 
-        File outputDirectory = new File(Constants.RESULT_PATH);
+        final File outputDirectory = new File(Constants.RESULT_PATH);
 
-        Checker checker = new Checker();
+        final Checker checker = new Checker();
         checker.deleteFiles(outputDirectory.listFiles());
 
-        for (File file : Objects.requireNonNull(directory.listFiles())) {
+        for (final File file : Objects.requireNonNull(directory.listFiles())) {
 
-            String filepath = Constants.OUT_PATH + file.getName();
-            File out = new File(filepath);
-            boolean isCreated = out.createNewFile();
+            final String filepath = Constants.OUT_PATH + file.getName();
+            final File out = new File(filepath);
+            final boolean isCreated = out.createNewFile();
             if (isCreated) {
                 action(file.getAbsolutePath(), filepath);
             }
         }
 
         checker.iterateFiles(Constants.RESULT_PATH, Constants.REF_PATH, Constants.TESTS_PATH);
-        Checkstyle test = new Checkstyle();
+        final Checkstyle test = new Checkstyle();
         test.testCheckstyle();
     }
 
@@ -63,18 +65,17 @@ public final class Main {
      * @param filePath2 for output file
      * @throws IOException in case of exceptions to reading / writing
      */
-    public static void action(final String filePath1,
-                              final String filePath2) throws IOException {
-        InputLoader inputLoader = new InputLoader(filePath1);
-        Input input = inputLoader.readData();
+    public static void action(final String filePath1, final String filePath2) throws IOException {
+        final InputLoader inputLoader = new InputLoader(filePath1);
+        final Input input = inputLoader.readData();
 
-        Writer fileWriter = new Writer(filePath2);
-        JsonHolyWriter holyWriter = new JsonHolyWriter(fileWriter);
+        final Writer fileWriter = new Writer(filePath2);
+        final JsonHolyWriter holyWriter = new JsonHolyWriter(fileWriter);
 
         System.out.println("Input: " + filePath1);
         System.out.println("Output: " + filePath2);
-        
-        AppHandler appHandler = new AppHandler(input, holyWriter);
+
+        final AppHandler appHandler = new AppHandler(input, holyWriter);
         appHandler.runActions();
 
         holyWriter.closeJSON();

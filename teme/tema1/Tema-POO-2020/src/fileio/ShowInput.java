@@ -3,7 +3,8 @@ package fileio;
 import java.util.ArrayList;
 
 /**
- * General information about show (video), retrieved from parsing the input test files
+ * General information about show (video), retrieved from parsing the input test
+ * files
  * <p>
  * DO NOT MODIFY
  */
@@ -25,8 +26,8 @@ public abstract class ShowInput {
      */
     private final ArrayList<String> genres;
 
-    public ShowInput(final String title, final int year,
-                     final ArrayList<String> cast, final ArrayList<String> genres) {
+    public ShowInput(final String title, final int year, final ArrayList<String> cast,
+            final ArrayList<String> genres) {
         this.title = title;
         this.year = year;
         this.cast = cast;

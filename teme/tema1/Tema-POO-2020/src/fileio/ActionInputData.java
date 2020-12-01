@@ -63,8 +63,8 @@ public final class ActionInputData {
      */
     private final List<List<String>> filters = new ArrayList<>();
 
-    protected ActionInputData(final int actionId, final String actionType,
-                              final String type, final String username, final String genre) {
+    protected ActionInputData(final int actionId, final String actionType, final String type,
+            final String username, final String genre) {
         this.actionId = actionId;
         this.actionType = actionType;
         this.type = type;
@@ -80,9 +80,8 @@ public final class ActionInputData {
     }
 
     public ActionInputData(final int actionId, final String actionType, final String objectType,
-                           final String genre, final String sortType, final String criteria,
-                           final String year, final int number, final List<String> words,
-                           final List<String> awards) {
+            final String genre, final String sortType, final String criteria, final String year,
+            final int number, final List<String> words, final List<String> awards) {
         this.actionId = actionId;
         this.actionType = actionType;
         this.objectType = objectType;
@@ -102,8 +101,7 @@ public final class ActionInputData {
     }
 
     public ActionInputData(final int actionId, final String actionType, final String type,
-                           final String username, final String title, final Double grade,
-                           final int seasonNumber) {
+            final String username, final String title, final Double grade, final int seasonNumber) {
         this.actionId = actionId;
         this.actionType = actionType;
         this.type = type;
@@ -172,20 +170,11 @@ public final class ActionInputData {
 
     @Override
     public String toString() {
-        return "ActionInputData{"
-                + "actionId=" + actionId
-                + ", actionType='" + actionType + '\''
-                + ", type='" + type + '\''
-                + ", username='" + username + '\''
-                + ", objectType='" + objectType + '\''
-                + ", sortType='" + sortType + '\''
-                + ", criteria='" + criteria + '\''
-                + ", title='" + title + '\''
-                + ", genre='" + genre + '\''
-                + ", number=" + number
-                + ", grade=" + grade
-                + ", seasonNumber=" + seasonNumber
-                + ", filters=" + filters
-                + '}' + "\n";
+        return "ActionInputData{" + "actionId=" + actionId + ", actionType='" + actionType + '\''
+                + ", type='" + type + '\'' + ", username='" + username + '\'' + ", objectType='"
+                + objectType + '\'' + ", sortType='" + sortType + '\'' + ", criteria='" + criteria
+                + '\'' + ", title='" + title + '\'' + ", genre='" + genre + '\'' + ", number="
+                + number + ", grade=" + grade + ", seasonNumber=" + seasonNumber + ", filters="
+                + filters + '}' + "\n";
     }
 }
