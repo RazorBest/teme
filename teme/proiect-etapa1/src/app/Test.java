@@ -1,17 +1,19 @@
-import checker.Checkstyle;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+package app;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import checker.Checkstyle;
 
 class Config {
     private String homework;
@@ -107,10 +109,12 @@ public final class Test {
     private static int score = 0;
     private static int totalScore = 0;
 
-    private Test() { }
+    private Test() {
+    }
 
     /**
      * Method to be called for testing the homework
+     *
      * @param argv String[]
      */
     public static void main(final String[] argv) {
@@ -120,10 +124,10 @@ public final class Test {
     }
 
     private static Config loadConfig() {
-        ObjectMapper objectMapper = new ObjectMapper();
+        final ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(CONFIG_FILE, Config.class);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             System.out.println("Could not find config file.");
             System.exit(-1);
         }
@@ -132,12 +136,12 @@ public final class Test {
     }
 
     private static void runTests() {
-        Config config = loadConfig();
+        final Config config = loadConfig();
         totalScore = config.getCheckstyleScore();
-        int manualScore = config.getReadmeScore() + config.getHomeworkDesignScore();
+        final int manualScore = config.getReadmeScore() + config.getHomeworkDesignScore();
 
-        for (final File testFile: Objects.requireNonNull(TEST_INPUTS_FILE.listFiles())) {
-            String testFileName = testFile.getName();
+        for (final File testFile : Objects.requireNonNull(TEST_INPUTS_FILE.listFiles())) {
+            final String testFileName = testFile.getName();
 
             preTestCleanUp();
 
@@ -147,33 +151,29 @@ public final class Test {
             runTest(testFileName, config, future);
         }
 
-        boolean checkstylePassed = Checkstyle.testCheckstyle();
+        final boolean checkstylePassed = Checkstyle.testCheckstyle();
         if (checkstylePassed) {
             score += config.getCheckstyleScore();
         }
 
         System.out.println("Total score: .......................... " + score + "/" + totalScore);
-        System.out.println("Up to "
-                + manualScore
+        System.out.println("Up to " + manualScore
                 + " points will be awarded manually by the teaching assistants."
                 + " (README & OOP design)");
         System.out.println("This value can be exceeded for great implementations.");
     }
 
-    private static void runTest(
-            final String testFileName,
-            final Config config,
-            final Future<Object> task
-    ) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File refFile = new File(CHECKER_RESOURCES_FOLDER + REF_FOLDER + testFileName);
+    private static void runTest(final String testFileName, final Config config,
+            final Future<Object> task) {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        final File refFile = new File(CHECKER_RESOURCES_FOLDER + REF_FOLDER + testFileName);
 
         try {
             task.get(MAX_MILLISECONDS_PER_TEST, TimeUnit.MILLISECONDS);
-        } catch (TimeoutException e) {
+        } catch (final TimeoutException e) {
             printMessage(testFileName, "Timeout");
             return;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             printMessage(testFileName, "Program ended with exception: " + e.getMessage());
             return;
         } finally {
@@ -184,8 +184,8 @@ public final class Test {
             printMessage(testFileName, "Output file not found. Skipping test...");
         } else {
             try {
-                var actual = objectMapper.readTree(TEST_OUT_FILE);
-                var expected = objectMapper.readTree(refFile);
+                final var actual = objectMapper.readTree(TEST_OUT_FILE);
+                final var expected = objectMapper.readTree(refFile);
 
                 final int testScore = testMaxScore(config, testFileName);
                 totalScore += testScore;
@@ -196,15 +196,15 @@ public final class Test {
                 } else {
                     printMessage(testFileName, "0/" + testScore, true);
                 }
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 printMessage(testFileName, "Output file badly formatted. Skipping test...");
             }
         }
     }
 
     private static Future<Object> createTimerTask(final String[] argv) {
-        ExecutorService executor = Executors.newCachedThreadPool();
-        Callable<Object> task = () -> {
+        final ExecutorService executor = Executors.newCachedThreadPool();
+        final Callable<Object> task = () -> {
             Main.main(argv);
             return null;
         };
@@ -213,10 +213,10 @@ public final class Test {
     }
 
     private static String[] createTestArgv(final File testFile) {
-        List<String> listArgv = new ArrayList<>();
+        final List<String> listArgv = new ArrayList<>();
         listArgv.add(testFile.getAbsolutePath());
         listArgv.add(OUT_FILE);
-        String[] argv = new String[0];
+        final String[] argv = new String[0];
         return listArgv.toArray(argv);
     }
 
@@ -224,19 +224,13 @@ public final class Test {
         TEST_OUT_FILE.delete();
     }
 
-    private static void printMessage(
-            final String testFileName,
-            final String message
-    ) {
+    private static void printMessage(final String testFileName, final String message) {
         printMessage(testFileName, message, false);
     }
 
-    private static void printMessage(
-            final String testFileName,
-            final String message,
-            final boolean trail
-    ) {
-        String fileName = testFileName.split("\\.")[0];
+    private static void printMessage(final String testFileName, final String message,
+            final boolean trail) {
+        final String fileName = testFileName.split("\\.")[0];
         if (trail) {
             System.out.println("[" + fileName + "]: ..................... " + message);
         } else {
@@ -244,11 +238,8 @@ public final class Test {
         }
     }
 
-    private static int testMaxScore(
-            final Config config,
-            final String testFileName
-    ) {
-        for (TestType testType: config.getTestTypes()) {
+    private static int testMaxScore(final Config config, final String testFileName) {
+        for (final TestType testType : config.getTestTypes()) {
             if (testFileName.contains(testType.getType())) {
                 return testType.getScore();
             }
